@@ -46,6 +46,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
         with:
+          slack-channel: UJ3MH6W3U
           slack-message: "hello"
         env:
           SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
