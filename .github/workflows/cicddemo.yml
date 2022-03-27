@@ -47,7 +47,7 @@ jobs:
         id: notify
         with:
           slack-bot-user-oauth-access-token: xoxe.xoxp-1-Mi0yLTU5MzA0OTEwNjI4LTkxMjY5NzY1NDc2OC0zMzAzMjE3NjM4NTMyLTMyOTc5ODk5NjM2ODUtYjY0YmJmN2RiOTU5MmI2MzJjM2NkMTY4ZWE5MGYyOWU1MTE4ZTA5NTQ3ZWY2ZGRlMTViOWNlYzdkZDI2N2RkZQ
-          slack-channel: CPPUV5KU0 #USE CHANNEL ID, NOT CHANNEL NAME, SINCE ID IS USED IN NEW SLACK API's
+          slack-channel: mobile #USE CHANNEL ID, NOT CHANNEL NAME, SINCE ID IS USED IN NEW SLACK API's
           slack-text: Hello! Something is burning! Or not...
           slack-optional-icon_emoji: ":fire:"
           slack-optional-as_user: false
