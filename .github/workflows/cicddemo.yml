@@ -46,7 +46,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
         with:
-          payload-file-path: "app/build/outputs/apk/debug/app-debug.apk"
+          slack-message: "hello"
         env:
           SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
 
