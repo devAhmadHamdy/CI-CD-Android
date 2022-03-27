@@ -42,18 +42,18 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
-      - name: Send message to Slack API
-        uses: archive/github-actions-slack@v2.0.0
-        id: notify
+      - name: action-slack
+        uses: 8398a7/action-slack@v3.8.0
         with:
-          slack-bot-user-oauth-access-token: xoxe.xoxp-1-Mi0yLTU5MzA0OTEwNjI4LTkxMjY5NzY1NDc2OC0zMzAzMjE3NjM4NTMyLTMyOTc5ODk5NjM2ODUtYjY0YmJmN2RiOTU5MmI2MzJjM2NkMTY4ZWE5MGYyOWU1MTE4ZTA5NTQ3ZWY2ZGRlMTViOWNlYzdkZDI2N2RkZQ
-          slack-channel: UJ3MH6W3U #USE CHANNEL ID, NOT CHANNEL NAME, SINCE ID IS USED IN NEW SLACK API's
-          slack-text: Hello! Something is burning! Or not...
-          slack-optional-icon_emoji: ":fire:"
-          slack-optional-as_user: false
-      - name: Result from "Send Message"
-        run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
-
+          status: success
+          author_name: Build Notification
+          env:
+            SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+        - name: release-apk
+          uses: actions/upload-artifact@v2
+          with:
+            name: app-release.apk
+            path: build/app/outputs/apk/release/app-release.apk
 
 
 
