@@ -42,14 +42,17 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
-      - name: Send GitHub Action trigger data to Slack workflow
-        id: slack
+      - name: Send message to Slack API
+        uses: archive/github-actions-slack@v2.0.0
+        id: notify
         with:
-          slack-bot-user-oauth-access-token: xoxe.xoxp-1-Mi0yLTU5MzA0OTEwNjI4LTkxMjY5NzY1NDc2OC0zMzAzMjE3NjM4NTMyLTMyOTc5ODk5NjM2ODUtYjY0YmJmN2RiOTU5MmI2MzJjM2NkMTY4ZWE5MGYyOWU1MTE4ZTA5NTQ3ZWY2ZGRlMTViOWNlYzdkZDI2N2RkZQ
-
-        uses: slackapi/slack-github-action@v1.18.0
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: CPPUV5KU0 #USE CHANNEL ID, NOT CHANNEL NAME, SINCE ID IS USED IN NEW SLACK API's
+          slack-text: Hello! Something is burning! Or not...
+          slack-optional-icon_emoji: ":fire:"
+          slack-optional-as_user: false
+      - name: Result from "Send Message"
+        run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
 
 
 
