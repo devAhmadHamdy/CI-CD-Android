@@ -46,13 +46,13 @@ jobs:
       - name: action-slack
         uses: rtCamp/action-slack-notify@v2
         with:
-            status: ${{ job.status }}
-            author_name: Build Notification
-            env:
-            SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          status: ${{ job.status }}
+          author_name: Build Notification
+          env:
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
 
               # Upload generated apk to the artifacts.
-            - name: release-apk
+        - name: release-apk
               uses: actions/upload-artifact@v2
               with:
                 name: app-release.apk
