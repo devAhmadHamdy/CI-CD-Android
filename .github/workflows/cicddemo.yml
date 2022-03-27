@@ -43,9 +43,9 @@ jobs:
           name: apk
           path: build/outputs/apk/debug/app-debug.apk
 
-      - name: action-slack
-        uses: rtCamp/action-slack-notify@v2
-        with:
+     - name: action-slack
+      uses: rtCamp/action-slack-notify@v2
+      with:
           status: ${{ job.status }}
           author_name: Build Notification
           env:
