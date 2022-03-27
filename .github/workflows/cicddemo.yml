@@ -17,7 +17,6 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    name:test
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -27,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
   apk:
     name: Generate APK
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
