@@ -10,4 +10,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-//https://hooks.slack.com/services/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
