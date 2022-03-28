@@ -47,7 +47,7 @@ jobs:
         env:
             SLACK_CHANNEL: general
             SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
-            SLACK_MESSAGE: 'Post Content :rocket:'
+            SLACK_MESSAGE: 'Post Content'
             SLACK_TITLE: Post Title
             SLACK_USERNAME: ahmed.saadeldin
             SLACK_WEBHOOK: https://hooks.slack.com/services/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
