@@ -52,7 +52,7 @@ jobs:
         env:
           channel-id: UJ3MH6W3U
           SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-          SLACK_BOT_TOKEN: xoxb-59304910628-3303559867298-Fzu7vK430FYwAjLrioUiOCJC
+          SLACK_BOT_TOKEN: xapp-1-A038XFKSFCJ-3303619877251-bae4c3be08c5b2ba550b577fdd428d7bec59fe798b00b3e8dbb977fa24754da7
 
 
 
