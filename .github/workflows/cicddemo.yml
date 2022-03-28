@@ -47,7 +47,7 @@ jobs:
         with:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           path: app/build/outputs/apk/debug/app-debug.apk
-          channel: C037XUBBCSX
+          channel: CSVDH5SQM
           title: here is a new build after passing the github actions work flow
 
 
