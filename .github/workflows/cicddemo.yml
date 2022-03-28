@@ -42,15 +42,15 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-            SLACK_CHANNEL: general
-            SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
-            SLACK_MESSAGE: 'Post Content'
-            SLACK_TITLE: Post Title
-            SLACK_USERNAME: ahmed.saadeldin
-            SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
 
 
 
