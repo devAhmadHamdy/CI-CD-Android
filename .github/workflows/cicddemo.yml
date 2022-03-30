@@ -65,15 +65,15 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
-          name: apk
+          name: release apk
           path: app/build/outputs/apk/release/app-release.apk
-#      - name: Upload to slack step
-#        uses: adrey/slack-file-upload-action@master
-#        with:
-#          token: ${{ secrets.SLACK_BOT_TOKEN }}
-#          path: app/build/outputs/apk/debug/app-debug.apk
-#          channel: CSVDH5SQM
-#          title: here is a new build after passing the github actions work flow
+      - name: Upload to slack step
+        uses: adrey/slack-file-upload-action@master
+        with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          path: app/build/outputs/apk/release/app-release.apk
+          channel: CSVDH5SQM
+          title: release apk
 
 
 
