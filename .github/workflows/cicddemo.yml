@@ -52,8 +52,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Build APK
-        run: bash ./gradlew assembleDebug --stacktrace
+#      - name: Build APK
+#        run: bash ./gradlew assembleDebug --stacktrace
 
       - name: Build Signed APK
         uses: victorbnl/build-signed-apk@main
@@ -66,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/release/app-release.apk
 #      - name: Upload to slack step
 #        uses: adrey/slack-file-upload-action@master
 #        with:
