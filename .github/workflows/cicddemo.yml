@@ -54,6 +54,14 @@ jobs:
           java-version: 1.8
       - name: Build APK
         run: bash ./gradlew assembleDebug --stacktrace
+
+      - name: Build Signed APK
+        uses: victorbnl/build-signed-apk@main
+        with:
+          keystore: key.keystore
+          keystore_password: ${{ secrets.keystore_password }}
+          key_alias: ${{ secrets.key_alias }}
+          key_password: ${{ secrets.key_password }}
 #      - name: Upload APK
 #        uses: actions/upload-artifact@v1
 #        with:
