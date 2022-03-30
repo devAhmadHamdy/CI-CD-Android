@@ -62,11 +62,11 @@ jobs:
           keystore_password: ${{ secrets.keystore_password }}
           key_alias: ${{ secrets.key_alias }}
           key_password: ${{ secrets.key_password }}
-#      - name: Upload APK
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: apk
-#          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/signed.apk
 #      - name: Upload to slack step
 #        uses: adrey/slack-file-upload-action@master
 #        with:
