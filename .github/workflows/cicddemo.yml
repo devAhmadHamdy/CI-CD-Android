@@ -62,7 +62,7 @@ jobs:
           keyStorePassword: ${{ secrets.keystore_password }}
           alias: ${{ secrets.key_alias }}
           keyPassword: ${{ secrets.key_password }}
-          releaseDirectory: app/build/outputs/apk/release
+          releaseDirectory: app/build/outputs/bundle/release
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
