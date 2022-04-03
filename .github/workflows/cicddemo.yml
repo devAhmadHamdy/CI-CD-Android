@@ -87,7 +87,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: com.jshvarts.flows
+          packageName: com.uchihan.nearby
           releaseFile: app/build/outputs/bundle/release/app-release.aab
           track: alpha
           whatsNewDirectory: distribution/
