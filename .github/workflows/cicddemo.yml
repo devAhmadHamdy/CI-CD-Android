@@ -56,17 +56,18 @@ jobs:
 #        run: bash ./gradlew assembleDebug --stacktrace
 
       - name: Build Signed APK
-        uses: victorbnl/build-signed-apk@main
+        uses: r0adkll/sign-android-release@v1
         with:
-          keystore: ${{ secrets.keystore }}
-          keystore_password: ${{ secrets.keystore_password }}
-          key_alias: ${{ secrets.key_alias }}
-          key_password: ${{ secrets.key_password }}
+          signingKeyBase64: ${{ secrets.keystore }}
+          keyStorePassword: ${{ secrets.keystore_password }}
+          alias: ${{ secrets.key_alias }}
+          keyPassword: ${{ secrets.key_password }}
+          releaseDirectory: app/build/outputs/apk/release/
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
           name: release apk
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/release/app-release.aab
 #      - name: Upload to slack step
 #        uses: adrey/slack-file-upload-action@master
 #        with:
