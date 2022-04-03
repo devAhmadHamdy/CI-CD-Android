@@ -86,9 +86,9 @@ jobs:
       - name: Deploy to Alpha
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: service_account.json
+          serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: com.uchihan.nearby
-          releaseFile: app/build/outputs/bundle/release/app-release.aab
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           inAppUpdatePriority: 2
           userFraction: 0.33
