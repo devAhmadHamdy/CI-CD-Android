@@ -54,15 +54,16 @@ jobs:
           java-version: 1.8
 #      - name: Build APK
 #        run: bash ./gradlew assembleDebug --stacktrace
-
-      - name: Build Signed APK
+      - name: Sign AAB
+        id: sign_aab
         uses: r0adkll/sign-android-release@v1
         with:
-          signingKeyBase64: ${{ secrets.keystore }}
-          keyStorePassword: ${{ secrets.keystore_password }}
-          alias: ${{ secrets.key_alias }}
-          keyPassword: ${{ secrets.key_password }}
           releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.keystore }}
+          alias: ${{ secrets.key_alias }}
+          keyStorePassword: ${{ secrets.keystore_password }}
+          keyPassword: ${{ secrets.key_password }}
+
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
