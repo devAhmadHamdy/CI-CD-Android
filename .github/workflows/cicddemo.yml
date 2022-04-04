@@ -99,7 +99,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1.0.15
         with:
           serviceAccountJson: service.json
-          packageName: com.uchihan.smartb_card
+          packageName: #YOUR_PACKAGE_ID
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           inAppUpdatePriority: 2
