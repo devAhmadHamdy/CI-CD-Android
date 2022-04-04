@@ -102,7 +102,6 @@ jobs:
           track: production
           inAppUpdatePriority: 2
           userFraction: 0.33
-          whatsNewDirectory: app/whatsNewDirectory/new-en-US
 
 
 
