@@ -87,7 +87,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service.json
-          packageName: com.uchihan.nearby
+          packageName: com.uchihan.smartb_card
           releaseFiles: app/build/outputs/apk/release/app-release.apk
           track: production
           inAppUpdatePriority: 2
