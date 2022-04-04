@@ -55,18 +55,18 @@ jobs:
 #      - name: Build APK
 #        run: bash ./gradlew assembleDebug --stacktrace
 
-      - name: Build Signed APK
-        uses: victorbnl/build-signed-apk@main
-        with:
-          keystore: ${{ secrets.keystore }}
-          keystore_password: ${{ secrets.keystore_password }}
-          key_alias: ${{ secrets.key_alias }}
-          key_password: ${{ secrets.key_password }}
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: release apk
-          path: app/build/outputs/apk/release/app-release.apk
+#      - name: Build Signed APK
+#        uses: victorbnl/build-signed-apk@main
+#        with:
+#          keystore: ${{ secrets.keystore }}
+#          keystore_password: ${{ secrets.keystore_password }}
+#          key_alias: ${{ secrets.key_alias }}
+#          key_password: ${{ secrets.key_password }}
+#      - name: Upload APK
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: release apk
+#          path: app/build/outputs/apk/release/app-release.apk
 #      - name: Upload to slack step
 #        uses: adrey/slack-file-upload-action@master
 #        with:
@@ -82,7 +82,17 @@ jobs:
 #          git push origin --tags
 #      - name: Create service_account.json
 #        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.jso
+      - name: Build Release AAB      // 1
+        run: ./gradlew bundleRelease
 
+      - name: Sign AAB               // 2
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.keystore }}
+          alias: ${{ secrets.key_alias }}
+          keyStorePassword: ${{ secrets.keystore_password }}
+          keyPassword: ${{ secrets.key_password }}
       - name: Deploy to Alpha
         uses: r0adkll/upload-google-play@v1
         with:
