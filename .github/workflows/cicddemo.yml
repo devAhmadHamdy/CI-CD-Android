@@ -98,7 +98,7 @@ jobs:
         with:
           serviceAccountJson: service.json
           packageName: com.uchihan.smartb_card
-          releaseFiles: app/build/outputs/apk/release/app-release.apk
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           inAppUpdatePriority: 2
           userFraction: 0.33
