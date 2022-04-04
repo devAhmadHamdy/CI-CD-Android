@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ release/2.1.1 ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -41,7 +41,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-  apk:
+  build_and_upload:
     name: Generate APK
     needs: build
     runs-on: ubuntu-latest
@@ -52,40 +52,31 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-#      - name: Build APK
-#        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Build APK
+        run: bash ./gradlew assembleDebug --stacktrace
 
-#      - name: Build Signed APK
-#        uses: victorbnl/build-signed-apk@main
-#        with:
-#          keystore: ${{ secrets.keystore }}
-#          keystore_password: ${{ secrets.keystore_password }}
-#          key_alias: ${{ secrets.key_alias }}
-#          key_password: ${{ secrets.key_password }}
-#      - name: Upload APK
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: release apk
-#          path: app/build/outputs/apk/release/app-release.apk
-#      - name: Upload to slack step
-#        uses: adrey/slack-file-upload-action@master
-#        with:
-#          token: ${{ secrets.SLACK_BOT_TOKEN }}
-#          path: app/build/outputs/apk/release/app-release.apk
-#          channel: CSVDH5SQM
-#          title: release apk
-#      - name: Tag Release
-#        run: |
-#          version_name=2.1.1
-#          echo "Tagging release with tag $version_name"
-#          git tag $version_name release/$version_name
-#          git push origin --tags
-#      - name: Create service_account.json
-#        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
-      - name: Build Release AAB      // 1
+      # Build signed APK
+      - name: Build Signed APK
+        uses: victorbnl/build-signed-apk@main
+        with:
+          keystore: ${{ secrets.keystore }}
+          keystore_password: ${{ secrets.keystore_password }}
+          key_alias: ${{ secrets.key_alias }}
+          key_password: ${{ secrets.key_password }}
+
+      # Upload APK to artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: release apk
+          path: app/build/outputs/apk/release/app-release.apk
+
+
+      # Generating aab
+      - name: Build Release AAB
         run: ./gradlew bundleRelease
 
-      - name: Sign AAB               // 2
+      - name: Sign AAB
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/bundle/release
@@ -93,7 +84,18 @@ jobs:
           alias: ${{ secrets.key_alias }}
           keyStorePassword: ${{ secrets.keystore_password }}
           keyPassword: ${{ secrets.key_password }}
-      - name: Deploy to Alpha
+
+      # Sending APK to slack
+      - name: Upload to slack step
+        uses: adrey/slack-file-upload-action@master
+        with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          path: app/build/outputs/apk/release/app-release.apk
+          channel: CSVDH5SQM
+          title: release APK
+
+      # Deploying aab to production
+      - name: Deploy to Production
         uses: r0adkll/upload-google-play@v1.0.15
         with:
           serviceAccountJson: service.json
