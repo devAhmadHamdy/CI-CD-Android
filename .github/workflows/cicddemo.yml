@@ -91,7 +91,7 @@ jobs:
         with:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           path: app/build/outputs/apk/release/app-release.apk
-          channel: CSVDH5SQM
+          channel: #YOUR_SLACK_CHANNEL
           title: release APK
 
       # Deploying aab to production
