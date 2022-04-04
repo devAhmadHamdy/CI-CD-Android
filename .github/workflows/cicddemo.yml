@@ -94,7 +94,7 @@ jobs:
           keyStorePassword: ${{ secrets.keystore_password }}
           keyPassword: ${{ secrets.key_password }}
       - name: Deploy to Alpha
-        uses: r0adkll/upload-google-play@v1
+        uses: r0adkll/upload-google-play@v1.0.15
         with:
           serviceAccountJson: service.json
           packageName: com.uchihan.smartb_card
